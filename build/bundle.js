@@ -98,6 +98,18 @@ eval("\n\nvar _createClass = function () { function defineProperties(target, pro
 
 /***/ }),
 
+/***/ "./src/helpers/renderer.js":
+/*!*********************************!*\
+  !*** ./src/helpers/renderer.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _server = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n\nvar _Home = __webpack_require__(/*! ../client/components/Home */ \"./src/client/components/Home.js\");\n\nvar _Home2 = _interopRequireDefault(_Home);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction render() {\n    var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));\n\n    var html = '<html>\\n        <head>\\n            <title>React SSR Demo</title>\\n        </head>\\n        <body>\\n            <div id=\"root\">' + content + '</div>\\n            <script src=\"./bundle.js\"></script>\\n        </body>\\n    </html>';\n\n    return html;\n}\n\nmodule.exports = render;\n\n//# sourceURL=webpack:///./src/helpers/renderer.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -106,7 +118,7 @@ eval("\n\nvar _createClass = function () { function defineProperties(target, pro
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar express = __webpack_require__(/*! express */ \"express\");\nvar React = __webpack_require__(/*! react */ \"react\");\n\nvar _require = __webpack_require__(/*! react-dom/server */ \"react-dom/server\"),\n    renderToString = _require.renderToString,\n    renderToStaticMarkup = _require.renderToStaticMarkup;\n\nvar Home = __webpack_require__(/*! ./client/components/Home */ \"./src/client/components/Home.js\");\n\nvar app = express();\n\napp.use(express.static('public'));\n\napp.get('/', function (req, res) {\n    // res.end('hello');\n\n    var content = renderToStaticMarkup(React.createElement(Home, null));\n\n    var html = '<html>\\n        <head></head>\\n        <body>\\n            <div id=\"root\">' + content + '</div>\\n            <script src=\"./bundle.js\"></script>\\n        </body>\\n    </html>';\n\n    res.send(html);\n});\n\napp.listen(3000, function () {\n    console.log('app listens at http://localhost:3000');\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("\n\nvar _renderer = __webpack_require__(/*! ./helpers/renderer */ \"./src/helpers/renderer.js\");\n\nvar _renderer2 = _interopRequireDefault(_renderer);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar express = __webpack_require__(/*! express */ \"express\");\n\n\nvar app = express();\n\napp.use(express.static('public'));\n\napp.get('/', function (req, res) {\n    res.send((0, _renderer2.default)());\n});\n\napp.listen(3000, function () {\n    console.log('app listens at http://localhost:3000');\n});\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
