@@ -4,8 +4,6 @@ import { fetchData } from '../redux/actions';
 
 class List extends Component {
   render() {
-      console.log(this.props);
-      
       const { list = [] }  = this.props;
         return (
             <div>
@@ -18,7 +16,9 @@ class List extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchData();
+      setTimeout(() => {
+        this.props.fetchData();
+      }, 1000);
   }
 }
 

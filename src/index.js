@@ -7,7 +7,9 @@ const app = express();
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {
-    const store = createStore();
+    const initialState = [1,2,3,4,5,6,7,8,9,10];
+
+    const store = createStore(initialState);
 
     res.send(renderer(req, store));
 });

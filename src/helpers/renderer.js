@@ -14,12 +14,16 @@ function render(req, store) {
         </Provider>
     );
 
+    const initialState = store.getState();
+
     const html = `<html>
         <head>
             <title>React SSR Demo</title>
         </head>
         <body>
             <div id="root">${content}</div>
+            <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
+
             <script src="./bundle.js"></script>
         </body>
     </html>`;

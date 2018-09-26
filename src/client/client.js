@@ -8,15 +8,18 @@ import reducers from './redux/reducers';
 
 import Routes from './Routes';
 
-const store = createStore(reducers, { list: [] }, applyMiddleware(thunk));
+const initialState = window.__INITIAL_STATE__;
+
+console.log(window.__INITIAL_STATE__);
+
+const store = createStore(reducers, initialState, applyMiddleware(thunk));
 
 hydrate(
     <Provider store={store}>
         <BrowserRouter> 
             <Routes />
         </BrowserRouter>
-    </Provider>
-    ,
+    </Provider>,
     document.getElementById('root')
 );
 

@@ -5,7 +5,7 @@ import {
 export default (state = { list: [] }, action) => {
     switch (action.type) {
         case FETCH_DATA:
-            return { ...state, list: action.payload.data };
+            return { ...state, list: state.list.concat(action.payload.data) };
         default:
             return state;
     }
